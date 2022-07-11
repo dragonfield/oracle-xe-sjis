@@ -6,12 +6,17 @@ Oracle Database XE 11g のデータベースの文字コードは AL32UTF8 で�
 # SYS/SYSTEM パスワード
 SYS/SYSTEM のパスワードは、オリジナルのイメージと同様に oracle で固定です。
 
+
 # ヘルスチェック
-
-
-docker tag oracle-xe-sjis:0.0.2 statsuta/oracle-xe-sjis:0.0.2
+docker の HEALTHCHECK のために、healthcheck.sh というスクリプトが用意されています。以下は docker-compose ファイルでの設定例です。
 
 ```
+healthcheck:
+    test: ["CMD-SHELL", "healthcheck.sh"]
+    interval: 10s
+    timeout: 10s
+    retries: 3
+    start_period: 60s
 ```
 
 # 初期化スクリプト
